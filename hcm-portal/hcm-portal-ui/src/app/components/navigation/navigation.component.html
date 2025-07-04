@@ -1,0 +1,80 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="isHandset ? 'dialog' : 'navigation'"
+      [mode]="'side'"
+      [opened]="true">
+    <mat-toolbar>HCM Portal</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
+      
+      <div *ngIf="authService.isManager()">
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Manager Functions</h3>
+        <a mat-list-item routerLink="/employees/add" routerLinkActive="active">
+          <mat-icon>person_add</mat-icon>
+          <span>Add Employee</span>
+        </a>
+        <a mat-list-item routerLink="/employees" routerLinkActive="active">
+          <mat-icon>people</mat-icon>
+          <span>Manage Employees</span>
+        </a>
+        <a mat-list-item routerLink="/leave-requests" routerLinkActive="active">
+          <mat-icon>event_available</mat-icon>
+          <span>Leave Requests</span>
+        </a>
+      </div>
+      
+      <div *ngIf="authService.isAdmin()">
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Admin Functions</h3>
+        <a mat-list-item routerLink="/exit-process" routerLinkActive="active">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Employee Exit</span>
+        </a>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>HCM Portal</span>
+      <span class="spacer"></span>
+      <button mat-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>account_circle</mat-icon>
+        {{ currentUser?.username }}
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item (click)="switchRole('Manager')" *ngIf="!authService.isManager()">
+          <mat-icon>supervisor_account</mat-icon>
+          <span>Switch to Manager</span>
+        </button>
+        <button mat-menu-item (click)="switchRole('Admin')" *ngIf="!authService.isAdmin()">
+          <mat-icon>admin_panel_settings</mat-icon>
+          <span>Switch to Admin</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+    
+    <!-- Chatbot Component -->
+    <app-chatbot></app-chatbot>
+  </mat-sidenav-content>
+</mat-sidenav-container>

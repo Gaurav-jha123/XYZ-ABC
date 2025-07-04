@@ -1,0 +1,21 @@
+a{ text-decoration: none}
+/* .navbar-header,.mainmenu-area{
+  position:fixed;
+  top:0px;
+} */
+ /* Updated CSS Code for Chatbot Popup */
+
+/* Chatbot Button */
+/* Chatbot Button - Positioned inside Header */
+
+
+@keyframes slideIn {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

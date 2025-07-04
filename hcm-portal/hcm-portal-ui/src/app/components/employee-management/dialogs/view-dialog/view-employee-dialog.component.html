@@ -1,0 +1,77 @@
+<h2 mat-dialog-title>Employee Details</h2>
+
+<mat-dialog-content class="dialog-content">
+  <div class="info-section">
+    <h3>Basic Information</h3>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="label">Employee ID</div>
+        <div class="value">{{ employee.employeeId }}</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Full Name</div>
+        <div class="value">{{ employee.fullName }}</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Department</div>
+        <div class="value">{{ employee.department }}</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Designation</div>
+        <div class="value">{{ employee.designation }}</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Employment Type</div>
+        <div class="value">
+          <mat-chip [color]="getEmploymentTypeColor(employee.employmentType)">
+            {{ employee.employmentType }}
+          </mat-chip>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="label">Status</div>
+        <div class="value">
+          <mat-chip [color]="getStatusColor(employee.status)">
+            {{ employee.status }}
+          </mat-chip>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="label">Role</div>
+        <div class="value">{{ employee.role }}</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Date of Joining</div>
+        <div class="value">{{ employee.dateOfJoining | date:'longDate' }}</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Manager</div>
+        <div class="value">{{ employee.managerName || 'N/A' }}</div>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider class="section-divider"></mat-divider>
+
+  <div class="info-section">
+    <h3>Contact Information</h3>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="label">Email</div>
+        <div class="value">{{ employee.contactInfo?.email || 'N/A' }}</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Phone</div>
+        <div class="value">{{ employee.contactInfo?.phone || 'N/A' }}</div>
+      </div>
+      <div class="info-item full-width">
+        <div class="label">Address</div>
+        <div class="value">{{ employee.contactInfo?.address || 'N/A' }}</div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="onClose()">Close</button>
+</mat-dialog-actions>

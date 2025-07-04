@@ -1,0 +1,105 @@
+<h2 mat-dialog-title>Initiate Employee Exit Process</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="exitForm">
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Select Employee</mat-label>
+        <mat-select formControlName="employeeId" (selectionChange)="onEmployeeSelect($event)">
+          <mat-option *ngFor="let employee of employees" [value]="employee.employeeId">
+            {{ employee.fullName }} ({{ employee.employeeId }})
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="exitForm.get('employeeId')?.hasError('required')">
+          Please select an employee
+        </mat-error>
+      </mat-form-field>
+    </div>
+    
+    <div class="form-row" *ngIf="selectedEmployee">
+      <div class="employee-details">
+        <h3>Employee Details</h3>
+        <div class="detail-row">
+          <strong>Name:</strong> {{ selectedEmployee.fullName }}
+        </div>
+        <div class="detail-row">
+          <strong>Department:</strong> {{ selectedEmployee.department }}
+        </div>
+        <div class="detail-row">
+          <strong>Designation:</strong> {{ selectedEmployee.designation }}
+        </div>
+        <div class="detail-row">
+          <strong>Date of Joining:</strong> {{ selectedEmployee.dateOfJoining | date:'shortDate' }}
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Exit Type</mat-label>
+        <mat-select formControlName="exitType">
+          <mat-option value="Resignation">Resignation</mat-option>
+          <mat-option value="Termination">Termination</mat-option>
+          <mat-option value="Retirement">Retirement</mat-option>
+        </mat-select>
+        <mat-error *ngIf="exitForm.get('exitType')?.hasError('required')">
+          Exit type is required
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Last Working Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="lastWorkingDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="exitForm.get('lastWorkingDate')?.hasError('required')">
+          Last working date is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Offboarding Notes</mat-label>
+        <textarea matInput 
+                  formControlName="offboardingNotes" 
+                  rows="4" 
+                  placeholder="Add any specific notes for the offboarding process..."></textarea>
+        <mat-error *ngIf="exitForm.get('offboardingNotes')?.hasError('required')">
+          Offboarding notes are required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    
+    <div class="form-row">
+      <div class="tasks-section">
+        <h3>Offboarding Tasks</h3>
+        <div class="task-list">
+          <mat-checkbox *ngFor="let task of defaultTasks" 
+                        [checked]="true"
+                        (change)="toggleTask(task, $event)">
+            {{ task }}
+          </mat-checkbox>
+        </div>
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Additional Tasks</mat-label>
+          <textarea matInput 
+                    formControlName="additionalTasks" 
+                    rows="3" 
+                    placeholder="Add any additional tasks (one per line)..."></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" 
+          [disabled]="exitForm.invalid"
+          (click)="onSubmit()">
+    <mat-icon>check_circle</mat-icon>
+    Initiate Exit Process
+  </button>
+</mat-dialog-actions>

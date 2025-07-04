@@ -1,0 +1,172 @@
+<div class="leave-management-container">
+  <div class="header">
+    <h1>Leave Request Management</h1>
+    <mat-chip-listbox aria-label="Status filter">
+      <mat-chip-option (click)="filterByStatus('all')" [selected]="statusFilter === 'all'">
+        All ({{ totalRequests }})
+      </mat-chip-option>
+      <mat-chip-option (click)="filterByStatus('Pending')" [selected]="statusFilter === 'Pending'">
+        Pending ({{ pendingCount }})
+      </mat-chip-option>
+      <mat-chip-option (click)="filterByStatus('Approved')" [selected]="statusFilter === 'Approved'">
+        Approved ({{ approvedCount }})
+      </mat-chip-option>
+      <mat-chip-option (click)="filterByStatus('Rejected')" [selected]="statusFilter === 'Rejected'">
+        Rejected ({{ rejectedCount }})
+      </mat-chip-option>
+    </mat-chip-listbox>
+  </div>
+
+  <!-- Filters -->
+  <mat-card class="filters-card">
+    <mat-card-content>
+      <div class="filters-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Search</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Search by employee name..." [value]="filterValue">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Department</mat-label>
+          <mat-select [(value)]="selectedDepartment" (selectionChange)="filterByDepartment()">
+            <mat-option value="">All Departments</mat-option>
+            <mat-option value="Engineering">Engineering</mat-option>
+            <mat-option value="Marketing">Marketing</mat-option>
+            <mat-option value="Sales">Sales</mat-option>
+            <mat-option value="HR">Human Resources</mat-option>
+            <mat-option value="Finance">Finance</mat-option>
+            <mat-option value="Operations">Operations</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Leave Type</mat-label>
+          <mat-select [(value)]="selectedLeaveType" (selectionChange)="filterByLeaveType()">
+            <mat-option value="">All Types</mat-option>
+            <mat-option value="Annual">Annual</mat-option>
+            <mat-option value="Sick">Sick</mat-option>
+            <mat-option value="Personal">Personal</mat-option>
+            <mat-option value="Maternity">Maternity</mat-option>
+            <mat-option value="Paternity">Paternity</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>From Date</mat-label>
+          <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate" (dateChange)="filterByDateRange()">
+          <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>To Date</mat-label>
+          <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate" (dateChange)="filterByDateRange()">
+          <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+
+        <button mat-button (click)="clearFilters()">
+          <mat-icon>clear</mat-icon>
+          Clear Filters
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Leave Requests Table -->
+  <mat-card class="table-card">
+    <mat-card-content>
+      <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort class="leave-table">
+
+          <ng-container matColumnDef="employeeName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
+            <td mat-cell *matCellDef="let request">
+              <div class="employee-info">
+                <strong>{{ request.employeeName }}</strong>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="department">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
+            <td mat-cell *matCellDef="let request">{{ request.department }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="leaveType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Leave Type</th>
+            <td mat-cell *matCellDef="let request">
+              <mat-chip [color]="getLeaveTypeColor(request.leaveType)">
+                {{ request.leaveType }}
+              </mat-chip>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="duration">
+            <th mat-header-cell *matHeaderCellDef>Duration</th>
+            <td mat-cell *matCellDef="let request">
+              <div class="duration-info">
+                <div>{{ request.startDate | date:'shortDate' }} - {{ request.endDate | date:'shortDate' }}</div>
+                <small>{{ calculateDuration(request.startDate, request.endDate) }} days</small>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="reason">
+            <th mat-header-cell *matHeaderCellDef>Reason</th>
+            <td mat-cell *matCellDef="let request">
+              <div class="reason-cell" [title]="request.reason">
+                {{ request.reason.length > 50 ? request.reason.substring(0, 50) + '...' : request.reason }}
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="requestDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Request Date</th>
+            <td mat-cell *matCellDef="let request">{{ request.requestDate | date:'shortDate' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <td mat-cell *matCellDef="let request">
+              <mat-chip [color]="getStatusColor(request.status)">
+                {{ request.status }}
+              </mat-chip>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let request">
+              <div class="action-buttons">
+                <button mat-icon-button color="primary" [disabled]="request.status !== 'Pending'"
+                  (click)="takeAction(request, 'approve')" matTooltip="Approve">
+                  <mat-icon>check_circle</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" [disabled]="request.status !== 'Pending'"
+                  (click)="takeAction(request, 'reject')" matTooltip="Reject">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+                <button mat-icon-button [disabled]="request.status !== 'Pending'"
+                  (click)="takeAction(request, 'changes')" matTooltip="Request Changes">
+                  <mat-icon>edit</mat-icon>
+                </button>
+
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="8">No leave requests found matching the filter criteria.</td>
+          </tr>
+        </table>
+      </div>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

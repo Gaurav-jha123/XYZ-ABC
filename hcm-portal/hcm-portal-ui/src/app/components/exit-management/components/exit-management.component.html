@@ -1,0 +1,167 @@
+<div class="exit-management-container">
+  <div class="header">
+    <h1>Employee Exit Management</h1>
+    <button mat-raised-button color="primary" (click)="initiateExit()">
+      <mat-icon>exit_to_app</mat-icon>
+      Initiate Exit Process
+    </button>
+  </div>
+  
+  <!-- Statistics Cards -->
+  <div class="stats-grid">
+    <mat-card class="stat-card" matTooltip="Employee exit requests currently being processed">
+      <mat-card-header>
+        <mat-card-title>In Progress</mat-card-title>
+        <mat-icon>hourglass_empty</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-number">{{ inProgressCount }}</div>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card class="stat-card" matTooltip="Employee exit requests that have been fully processed">
+      <mat-card-header>
+        <mat-card-title>Completed</mat-card-title>
+        <mat-icon>check_circle</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-number">{{ completedCount }}</div>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card class="stat-card" matTooltip="Employee exit requests initiated in the current month">
+      <mat-card-header>
+        <mat-card-title>This Month</mat-card-title>
+        <mat-icon>calendar_today</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-number">{{ thisMonthCount }}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+  <!-- Filters -->
+  <mat-card class="filters-card">
+    <div class="filters-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" 
+               placeholder="Search by employee name..." [value]="filterValue">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Exit Type</mat-label>
+        <mat-select [(value)]="selectedExitType" (selectionChange)="filterByExitType()">
+          <mat-option value="">All Types</mat-option>
+          <mat-option value="Resignation">Resignation</mat-option>
+          <mat-option value="Termination">Termination</mat-option>
+          <mat-option value="Retirement">Retirement</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select [(value)]="selectedStatus" (selectionChange)="filterByStatus()">
+          <mat-option value="">All Status</mat-option>
+          <mat-option value="In Progress">In Progress</mat-option>
+          <mat-option value="Completed">Completed</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <button mat-stroked-button color="primary" (click)="clearFilters()">
+        <mat-icon>clear</mat-icon>
+        Clear Filters
+      </button>
+    </div>
+  </mat-card>
+  
+  <!-- Exit Requests Table -->
+  <mat-card class="table-card">
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" matSort class="exit-table">
+        
+        <ng-container matColumnDef="employeeName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
+          <td mat-cell *matCellDef="let request">
+            <div class="employee-info">
+              <strong>{{ request.employeeName }}</strong>
+              <small>ID: {{ request.employeeId }}</small>
+            </div>
+          </td>
+        </ng-container>
+          
+          <ng-container matColumnDef="exitType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Exit Type</th>
+            <td mat-cell *matCellDef="let request">
+              <mat-chip [color]="getExitTypeColor(request.exitType)">
+                {{ request.exitType }}
+              </mat-chip>
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="lastWorkingDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Working Date</th>
+            <td mat-cell *matCellDef="let request">
+              <div class="date-info">
+                {{ request.lastWorkingDate | date:'shortDate' }}
+                <small [ngClass]="{'urgent': isUrgent(request.lastWorkingDate)}">
+                  {{ getDaysUntilExit(request.lastWorkingDate) }}
+                </small>
+              </div>
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="initiatedDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Initiated Date</th>
+            <td mat-cell *matCellDef="let request">{{ request.initiatedDate | date:'shortDate' }}</td>
+          </ng-container>
+          
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <td mat-cell *matCellDef="let request">
+              <mat-chip [color]="getStatusColor(request.status)">
+                {{ request.status }}
+              </mat-chip>
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="progress">
+            <th mat-header-cell *matHeaderCellDef>Progress</th>
+            <td mat-cell *matCellDef="let request">
+              <div class="progress-info">
+                <mat-progress-bar mode="determinate" 
+                                  [value]="getProgressValue(request)">
+                </mat-progress-bar>
+                <small>{{ getCompletedTasks(request) }}/{{ getTotalTasks(request) }} tasks</small>
+              </div>
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let request">
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="More actions">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="markCompleted(request)" [disabled]="request.status === 'Completed'">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>Mark Completed</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="7">No exit requests found matching the filter criteria.</td>
+          </tr>
+        </table>
+      </div>
+      
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>

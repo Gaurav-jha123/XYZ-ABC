@@ -1,0 +1,93 @@
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: calc(50% - 8px);
+}
+
+.employee-details {
+  width: 100%;
+  background: #f5f5f5;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.detail-row {
+  margin-bottom: 8px;
+}
+
+.detail-row strong {
+  color: #333;
+  margin-right: 8px;
+}
+
+.tasks-section {
+  width: 100%;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 16px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.task-list mat-checkbox {
+  margin-left: 8px;
+}
+
+h3 {
+  margin: 0 0 16px 0;
+  color: #333;
+  font-weight: 500;
+}
+
+h2.mat-dialog-title {
+  margin-bottom: 20px;
+  color: #1976d2;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+mat-dialog-content {
+  max-width: 600px;
+  min-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-bottom: 10px !important;
+}
+
+/* Dialog action buttons styling */
+mat-dialog-actions {
+  padding: 16px 24px 24px !important;
+  gap: 12px;
+}
+
+mat-dialog-actions button mat-icon {
+  margin-right: 8px;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+  }
+  
+  .half-width {
+    width: 100%;
+  }
+  
+  mat-dialog-content {
+    min-width: 300px;
+  }
+}

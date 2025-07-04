@@ -1,0 +1,8 @@
+requests
+langchain
+faiss-cpu
+pydantic
+python-dotenv
+streamlit
+langgraph
+typing-extensions

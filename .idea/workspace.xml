@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="524b8680-1ae9-4692-b664-d4a536d5f83b" name="Changes" comment="Feedback Agent, Gemini 2.5 Flash and latest gemini test embedding usage." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="support-of-feedback-agent" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;samya_ghosh&quot;,
+      &quot;fullname&quot;: &quot;Samya Ghosh&quot;
+    }
+  }
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://git.garage.epam.com/ai.webgenie/ai.webgenie.git&quot;,
+    &quot;second&quot;: &quot;3587bc13-df31-4245-8c4a-13a497cb8ef1&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2ttDh2BHUck13W0W5TcgWvS5huf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for test.test_gemini_generate.executor": "Debug",
+    "Python tests.Python tests for test.test_process_endpoint.executor": "Debug",
+    "Python tests.Python tests in test.py.executor": "Debug",
+    "Python.api.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.base64_pic.executor": "Debug",
+    "Python.gemini_test.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.respo_par.executor": "Run",
+    "Python.setup (1).executor": "Run",
+    "Python.setup.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "dev",
+    "last_opened_file_path": "C:/AI.WebGenie/ai.webgenie",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "two.files.diff.last.used.file": "C:/AI.WebGenie/ai.webgenie/OmniParser.API/setup.py"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\AI.WebGenie\ai.webgenie" />
+      <recent name="C:\AI.WebGenie\ai.webgenie\Webgenie_Chatbot" />
+      <recent name="C:\AI.WebGenie\ai.webgenie\Webgenie_Chatbot\vectorstore" />
+      <recent name="C:\AI.WebGenie\ai.webgenie\Webgenie_Chatbot\tools" />
+      <recent name="C:\AI.WebGenie\ai.webgenie\OmniParser.API\imgs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\AI.WebGenie\ai.webgenie\OmniParser.API" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.Python tests for test.test_process_endpoint">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ai.webgenie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OmniParser.API/omnitool/gradio" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OmniParser.API/omnitool/gradio/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ai.webgenie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OmniParser.API" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OmniParser.API/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test.test_gemini_generate" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="ai.webgenie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OmniParser.API" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test.test_gemini_generate&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test.test_process_endpoint" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="ai.webgenie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OmniParser.API" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test.test_process_endpoint&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in test.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="ai.webgenie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OmniParser.API" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/OmniParser.API/test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.app" />
+      <item itemvalue="Python.test" />
+      <item itemvalue="Python tests.Python tests in test.py" />
+      <item itemvalue="Python tests.Python tests for test.test_gemini_generate" />
+      <item itemvalue="Python tests.Python tests for test.test_process_endpoint" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests in test.py" />
+        <item itemvalue="Python tests.Python tests for test.test_process_endpoint" />
+        <item itemvalue="Python tests.Python tests for test.test_gemini_generate" />
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.app" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-14705d77f0bb-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.25659.43" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="524b8680-1ae9-4692-b664-d4a536d5f83b" name="Changes" comment="" />
+      <created>1741162592540</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1741162592540</updated>
+    </task>
+    <task id="LOCAL-00001" summary="OmniParser API code and Test">
+      <option name="closed" value="true" />
+      <created>1741165119614</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741165119614</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Adding setup code to start app and readme file">
+      <option name="closed" value="true" />
+      <created>1741355694201</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1741355694201</updated>
+    </task>
+    <task id="LOCAL-00003" summary="OmniParser API integration with Gemini API">
+      <option name="closed" value="true" />
+      <created>1742406940003</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1742406940003</updated>
+    </task>
+    <task id="LOCAL-00004" summary="OmniParser API integration with Gemini API">
+      <option name="closed" value="true" />
+      <created>1742538675181</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742538675181</updated>
+    </task>
+    <task id="LOCAL-00005" summary="OmniParser API integration with Gemini API">
+      <option name="closed" value="true" />
+      <created>1742554188734</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1742554188734</updated>
+    </task>
+    <task id="LOCAL-00006" summary="OmniParser Gemini API integration with UI">
+      <option name="closed" value="true" />
+      <created>1742801606645</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742801606645</updated>
+    </task>
+    <task id="LOCAL-00007" summary="OmniParser Gemini API integration with UI">
+      <option name="closed" value="true" />
+      <created>1742823213774</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1742823213774</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Updated Gemini API Integration">
+      <option name="closed" value="true" />
+      <created>1742966123870</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1742966123870</updated>
+    </task>
+    <task id="LOCAL-00009" summary="RAG based Chatbot with OmniParser + Gemini">
+      <option name="closed" value="true" />
+      <created>1750161241085</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1750161241085</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Mutli-Agent RAG based Chatbot with Gemini">
+      <option name="closed" value="true" />
+      <created>1750743910782</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1750743910782</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Setup files">
+      <option name="closed" value="true" />
+      <created>1750744772459</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1750744772459</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added a .docx RAG">
+      <option name="closed" value="true" />
+      <created>1750837889262</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1750837889262</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added a .docx RAG">
+      <option name="closed" value="true" />
+      <created>1750838396782</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1750838396782</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added required packages setup">
+      <option name="closed" value="true" />
+      <created>1750859856387</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1750859856387</updated>
+    </task>
+    <task id="LOCAL-00015" summary="MongoDb Integration">
+      <option name="closed" value="true" />
+      <created>1751034827607</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1751034827607</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Feedback Agent, Gemini 2.5 Flash and latest gemini test embedding usage.">
+      <option name="closed" value="true" />
+      <created>1751369352436</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1751369352436</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="OmniParser API code and Test" />
+    <MESSAGE value="Adding setup code to start app and readme file" />
+    <MESSAGE value="OmniParser API integration with Gemini API" />
+    <MESSAGE value="OmniParser Gemini API integration with UI" />
+    <MESSAGE value="Merge branch 'gemini_backend_api_2' into 'dev'&#10;&#10;Gemini API Master Prompt Changes&#10;&#10;See merge request ai.webgenie/ai.webgenie!10" />
+    <MESSAGE value="Updated Gemini API Integration" />
+    <MESSAGE value="RAG based Chatbot with OmniParser + Gemini" />
+    <MESSAGE value="Mutli-Agent RAG based Chatbot with Gemini" />
+    <MESSAGE value="Setup files" />
+    <MESSAGE value="Added a .docx RAG" />
+    <MESSAGE value="Added required packages setup" />
+    <MESSAGE value="MongoDb Integration" />
+    <MESSAGE value="Feedback Agent, Gemini 2.5 Flash and latest gemini test embedding usage." />
+    <option name="LAST_COMMIT_MESSAGE" value="Feedback Agent, Gemini 2.5 Flash and latest gemini test embedding usage." />
+  </component>
+</project>

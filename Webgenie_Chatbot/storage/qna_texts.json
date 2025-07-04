@@ -1,0 +1,20 @@
+[
+  {
+    "page_content": "HCM Back-Office Portal – User Help Guide (Enhanced)\n\nThis document provides a comprehensive guide for business users of the Human Capital Management (HCM) Back-Office Portal. It describes how Managers and Administrators can use the portal's features to manage employees, approve leaves, and process exits.\n\nFunctional Flows\n\nThis section outlines the main business processes and how to perform them step by step."
+  },
+  {
+    "page_content": "1. Add New Employee Record (Manager Access)\n\nThis feature allows Managers to register a new employee into the system.\n\nSteps:\n\n1. Log in as a Manager.\n\n2. Navigate to the 'Employees' section and click on 'Add New Employee'.\n\n3. Fill in the required employee information.\n\n4. Click 'Save' to submit the form.\n\n5. A confirmation message will appear, and the new employee will be listed in the directory."
+  },
+  {
+    "page_content": "2. View and Manage Employee Master Data (Manager Access)\n\nManagers can view and update records of employees reporting to them.\n\nSteps:\n\n1. Log in as a Manager.\n\n2. Go to the 'Employees' section.\n\n3. Use filters (e.g., department or status) or search to find specific employees.\n\n4. Click on an employee record to view details.\n\n5. Click 'Edit' to update information, then save your changes."
+  },
+  {
+    "page_content": "3. Manage Leave Requests (Manager Access)\n\nManagers can approve or reject leave requests submitted by their team members.\n\nSteps:\n\n1. Log in as a Manager.\n\n2. Go to the 'Leave Requests' section.\n\n3. The system displays all pending requests from your team.\n\n4. Click on a request to view details.\n\n5. Choose to approve, reject, or comment, then submit your decision.\n\n6. The employee will be notified of the decision."
+  },
+  {
+    "page_content": "4. Initiate Employee Exit Process (Admin Access)\n\nAdmins can initiate the exit process for employees leaving the organization.\n\nSteps:\n\n1. Log in as an Admin.\n\n2. Go to the 'Exit Management' section.\n\n3. Click 'Initiate Exit' and select the employee from the list.\n\n4. Choose the exit type (e.g., resignation or termination) and specify the last working date.\n\n5. Add offboarding notes or tasks if needed, then submit.\n\n6. The system tracks the status of the exit request in the dashboard."
+  },
+  {
+    "page_content": "User Role Summary\n\nManagers: Can add and update employee records, and manage leave requests for their direct reports.\n\nAdministrators: Can initiate and manage the employee exit process."
+  }
+]

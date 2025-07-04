@@ -1,0 +1,79 @@
+<h2 mat-dialog-title>Edit Employee</h2>
+
+<mat-dialog-content class="dialog-content">
+  <form [formGroup]="editForm">
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="fullName">
+      </mat-form-field>
+    </div>
+    
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Employment Type</mat-label>
+        <mat-select formControlName="employmentType">
+          <mat-option value="Full-time">Full-time</mat-option>
+          <mat-option value="Part-time">Part-time</mat-option>
+          <mat-option value="Contract">Contract</mat-option>
+          <mat-option value="Intern">Intern</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="Active">Active</mat-option>
+          <mat-option value="Inactive">Inactive</mat-option>
+          <mat-option value="On Leave">On Leave</mat-option>
+          <mat-option value="Terminated">Terminated</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Role</mat-label>
+        <input matInput formControlName="role">
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Designation</mat-label>
+        <input matInput formControlName="designation">
+      </mat-form-field>
+    </div>
+    
+    <mat-divider></mat-divider>
+    <h3>Contact Information</h3>
+    
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email">
+      </mat-form-field>
+    </div>
+    
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone">
+      </mat-form-field>
+    </div>
+    
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Address</mat-label>
+        <textarea matInput formControlName="address" rows="3"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" 
+          [disabled]="editForm.invalid"
+          (click)="onSave()">
+    Save Changes
+  </button>
+</mat-dialog-actions>

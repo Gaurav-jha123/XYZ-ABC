@@ -1,0 +1,156 @@
+<div class="chatbot-container" [class.expanded]="isExpanded">
+  <!-- Chatbot Toggle Button -->
+  <button 
+    mat-fab 
+    color="primary" 
+    class="chatbot-toggle"
+    (click)="toggleChatbot()"
+    [attr.aria-label]="isExpanded ? 'Close chat' : 'Open chat'"
+    matTooltip="HCM Assistant">
+    <mat-icon>{{ isExpanded ? 'close' : 'chat' }}</mat-icon>
+  </button>
+
+  <!-- Chatbot Panel -->
+  <div class="chatbot-panel" [class.show]="isExpanded">
+    <mat-card class="chat-card">
+      <!-- Header -->
+      <mat-card-header class="chat-header">
+        <div class="chat-title">
+          <mat-icon class="assistant-icon">support_agent</mat-icon>
+          <span>HCM Assistant</span>
+        </div>
+        <div class="header-actions">
+          <button mat-icon-button (click)="clearChat()" matTooltip="Clear chat">
+            <mat-icon>refresh</mat-icon>
+          </button>
+          <button mat-icon-button (click)="toggleChatbot()" matTooltip="Close chat">
+            <mat-icon>minimize</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+
+      <mat-divider></mat-divider>
+
+      <!-- Chat Messages -->
+      <mat-card-content class="chat-content">
+        <div class="chat-messages">
+          <!-- Quick Action Buttons -->
+          <div class="quick-actions" *ngIf="messages.length === 2">
+            <h4>Quick Actions:</h4>
+            <div class="action-buttons">
+              <button mat-stroked-button (click)="sendQuickMessage('How to add employee?')" class="quick-btn">
+                <mat-icon>person_add</mat-icon>
+                Add Employee Guide
+              </button>
+              <button mat-stroked-button (click)="sendQuickMessage('Leave management help')" class="quick-btn">
+                <mat-icon>event_available</mat-icon>
+                Leave Management
+              </button>
+              <button mat-stroked-button (click)="sendQuickMessage('Dashboard overview')" class="quick-btn">
+                <mat-icon>dashboard</mat-icon>
+                Dashboard Help
+              </button>
+              <button mat-stroked-button (click)="sendQuickMessage('Navigation guide')" class="quick-btn">
+                <mat-icon>explore</mat-icon>
+                Navigation Guide
+              </button>
+            </div>
+          </div>
+
+          <div 
+            *ngFor="let message of messages" 
+            class="message"
+            [class.user-message]="message.isUser"
+            [class.bot-message]="!message.isUser">
+            
+            <div class="message-content">
+              <div class="message-avatar" *ngIf="!message.isUser">
+                <mat-icon>support_agent</mat-icon>
+              </div>
+              
+              <div class="message-bubble">
+                <div [innerHTML]="message.isUser ? message.text : formatMessage(message.text)"></div>
+                <span class="message-time">
+                  {{ message.timestamp | date:'short' }}
+                </span>
+              </div>
+              
+              <div class="message-avatar" *ngIf="message.isUser">
+                <mat-icon>account_circle</mat-icon>
+              </div>
+            </div>
+          </div>
+
+          <!-- Typing Indicator -->
+          <div class="message bot-message" *ngIf="isTyping">
+            <div class="message-content">
+              <div class="message-avatar">
+                <mat-icon>support_agent</mat-icon>
+              </div>
+              <div class="message-bubble typing-indicator">
+                <div class="typing-dots">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <!-- Input Area -->
+      <mat-divider></mat-divider>
+      <div class="chat-input-area">
+        <!-- Formatting Toolbar - Always Visible -->
+        <div class="formatting-toolbar show">
+          <button mat-icon-button (click)="formatText('bold')" matTooltip="Bold" type="button">
+            <mat-icon>format_bold</mat-icon>
+          </button>
+          <button mat-icon-button (click)="formatText('italic')" matTooltip="Italic" type="button">
+            <mat-icon>format_italic</mat-icon>
+          </button>
+          <button mat-icon-button (click)="formatText('underline')" matTooltip="Underline" type="button">
+            <mat-icon>format_underlined</mat-icon>
+          </button>
+          <button mat-icon-button (click)="formatText('insertUnorderedList')" matTooltip="Bullet List" type="button">
+            <mat-icon>format_list_bulleted</mat-icon>
+          </button>
+          <button mat-icon-button (click)="formatText('insertOrderedList')" matTooltip="Numbered List" type="button">
+            <mat-icon>format_list_numbered</mat-icon>
+          </button>
+          <button mat-icon-button (click)="formatText('removeFormat')" matTooltip="Clear Formatting" type="button">
+            <mat-icon>format_clear</mat-icon>
+          </button>
+        </div>
+
+        <!-- Rich Text Editor -->
+        <div class="rich-text-container">
+          <div 
+            #richTextEditor
+            class="rich-text-editor"
+            contenteditable="true"
+            (keydown)="onEditorKeyPress($event)"
+            (input)="onEditorInput()"
+            placeholder="Type your message... (Shift+Enter for new line)"
+            [attr.aria-label]="'Rich text message input'">
+          </div>
+          
+          <!-- Send Button -->
+          <div class="editor-actions">
+            <button 
+              mat-fab 
+              color="primary" 
+              class="send-button"
+              (click)="sendMessage()"
+              [disabled]="!currentMessage.trim()"
+              matTooltip="Send message"
+              type="button">
+              <mat-icon>send</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

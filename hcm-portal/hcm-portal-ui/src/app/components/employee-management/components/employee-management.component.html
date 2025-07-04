@@ -1,0 +1,143 @@
+    <div class="employee-management-container">
+      <div class="header">
+        <h1>Employee Management</h1>
+        <button mat-raised-button color="primary" routerLink="/employees/add">
+          <mat-icon>person_add</mat-icon>
+          Add Employee
+        </button>
+      </div>
+      
+      <!-- Filters -->
+      <mat-card class="filters-card">
+        <mat-card-content>
+          <div class="filters-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Search</mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="Search employees..." [value]="filterValue">
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <mat-label>Department</mat-label>
+              <mat-select [(value)]="selectedDepartment" (selectionChange)="filterByDepartment()">
+                <mat-option value="">All Departments</mat-option>
+                <mat-option value="Engineering">Engineering</mat-option>
+                <mat-option value="Marketing">Marketing</mat-option>
+                <mat-option value="Sales">Sales</mat-option>
+                <mat-option value="HR">Human Resources</mat-option>
+                <mat-option value="Finance">Finance</mat-option>
+                <mat-option value="Operations">Operations</mat-option>
+              </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <mat-label>Employment Status</mat-label>
+              <mat-select [(value)]="selectedStatus" (selectionChange)="filterByStatus()">
+                <mat-option value="">All Status</mat-option>
+                <mat-option value="Active">Active</mat-option>
+                <mat-option value="Inactive">Inactive</mat-option>
+                <mat-option value="On Leave">On Leave</mat-option>
+                <mat-option value="Terminated">Terminated</mat-option>
+              </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <mat-label>From Date</mat-label>
+              <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate" (dateChange)="filterByDateRange()">
+              <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+              <mat-datepicker #startPicker></mat-datepicker>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <mat-label>To Date</mat-label>
+              <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate" (dateChange)="filterByDateRange()">
+              <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+              <mat-datepicker #endPicker></mat-datepicker>
+            </mat-form-field>
+            
+            <button mat-button (click)="clearFilters()">
+              <mat-icon>clear</mat-icon>
+              Clear Filters
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      
+      <!-- Employee Table -->
+      <mat-card class="table-card">
+        <mat-card-content>
+          <div class="table-container">
+            <table mat-table [dataSource]="dataSource" matSort class="employee-table">
+              
+              <ng-container matColumnDef="employeeId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee ID</th>
+                <td mat-cell *matCellDef="let employee">{{ employee.employeeId }}</td>
+              </ng-container>
+              
+              <ng-container matColumnDef="fullName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
+                <td mat-cell *matCellDef="let employee">{{ employee.fullName }}</td>
+              </ng-container>
+              
+              <ng-container matColumnDef="department">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
+                <td mat-cell *matCellDef="let employee">{{ employee.department }}</td>
+              </ng-container>
+              
+              <ng-container matColumnDef="designation">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Designation</th>
+                <td mat-cell *matCellDef="let employee">{{ employee.designation }}</td>
+              </ng-container>
+              
+              <ng-container matColumnDef="employmentType">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Employment Type</th>
+                <td mat-cell *matCellDef="let employee">
+                  <mat-chip [color]="getEmploymentTypeColor(employee.employmentType)">
+                    {{ employee.employmentType }}
+                  </mat-chip>
+                </td>
+              </ng-container>
+              
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                <td mat-cell *matCellDef="let employee">
+                  <mat-chip [color]="getStatusColor(employee.status)">
+                    {{ employee.status }}
+                  </mat-chip>
+                </td>
+              </ng-container>
+              
+              <ng-container matColumnDef="dateOfJoining">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Date of Joining</th>
+                <td mat-cell *matCellDef="let employee">{{ employee.dateOfJoining | date:'shortDate' }}</td>
+              </ng-container>
+              
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let employee">
+                  <div class="action-buttons">
+                    <button mat-icon-button color="primary" (click)="viewEmployee(employee)" 
+                            matTooltip="View employee details">
+                      <mat-icon>visibility</mat-icon>
+                    </button>
+                    <button mat-icon-button color="accent" (click)="editEmployee(employee)" 
+                            matTooltip="Edit employee">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                  </div>
+                </td>
+              </ng-container>
+              
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="8">No employees found matching the filter criteria.</td>
+              </tr>
+            </table>
+          </div>
+          
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </mat-card-content>
+      </mat-card>
+    </div>

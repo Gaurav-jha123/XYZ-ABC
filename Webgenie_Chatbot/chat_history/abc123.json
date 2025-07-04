@@ -1,0 +1,59 @@
+{
+  "last_agent": "rag_agent",
+  "messages": [
+    {
+      "type": "HandoffMessage",
+      "content": "What are the products available?",
+      "source": "user",
+      "target": "router_agent"
+    },
+    {
+      "type": "HandoffMessage",
+      "content": "Transferred to rag_agent, adopting the role of rag_agent immediately.",
+      "source": "router_agent",
+      "target": "rag_agent"
+    },
+    {
+      "type": "TextMessage",
+      "content": "Currently, 'Sony Smart TV-2015' and 'Apple new mac book 2015' are available.",
+      "source": "rag_agent",
+      "target": null
+    },
+    {
+      "type": "TextMessage",
+      "content": "",
+      "source": "rag_agent",
+      "target": null
+    },
+    {
+      "type": "HandoffMessage",
+      "content": "Transferred to user, adopting the role of user immediately.",
+      "source": "rag_agent",
+      "target": "user"
+    },
+    {
+      "type": "HandoffMessage",
+      "content": "How to order a product ?",
+      "source": "user",
+      "target": "rag_agent"
+    },
+    {
+      "type": "TextMessage",
+      "content": "To order a product, first add the product to your cart by clicking the 'ADD TO CART' button on the product's page. Once you have items in your cart, click the 'Checkout' button at the top of the screen to proceed to the checkout process and complete your order.  Alternatively, you can click the 'ADD TO CART' button appearing on the product when you hover over it. Then, click the 'Checkout' button below your product and next to options like \u2018UPDATE CART\u2019 to proceed to the checkout process and complete your order.",
+      "source": "rag_agent",
+      "target": null
+    },
+    {
+      "type": "TextMessage",
+      "content": "",
+      "source": "rag_agent",
+      "target": null
+    },
+    {
+      "type": "HandoffMessage",
+      "content": "Transferred to user, adopting the role of user immediately.",
+      "source": "rag_agent",
+      "target": "user"
+    }
+  ]
+}

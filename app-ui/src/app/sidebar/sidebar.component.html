@@ -1,0 +1,37 @@
+<!-- Chat Button (Always Visible) -->
+<button *ngIf="isChatIconShown" class="chat-button" (click)="toggleSidebar()">Chat with AI</button>
+
+<!-- Overlay (Closes Sidebar When Clicked) -->
+<div class="overlay" [ngClass]="{ 'show': isSidebarOpen }" (click)="toggleSidebar()"></div>
+
+<!-- Sidebar -->
+<div class="sidebar" [ngClass]="{ 'open': isSidebarOpen }">
+  <div class="header"
+    style="background-color: #28c845; padding: 10px; color: white; display: flex; justify-content: space-between;">
+    <span>AI Web Genie</span>
+    <span style="cursor: pointer;" (click)="toggleSidebar()">✖</span>
+  </div>
+
+  <div class="content" style="padding: 10px;">
+    <div class="chat-box"
+      style="height: 1000px; background: #f8f8f8; padding: 10px; border-radius: 5px; overflow-y: auto;">
+      <div *ngIf="isLoading" class="spinner-overlay">
+        <div class="spinner"></div>
+      </div>
+      <div *ngFor="let message of messages"
+        [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
+        <span [innerHTML]="message.text"></span>
+      </div>
+    </div>
+    <input [(ngModel)]="userPrompt" type="text" placeholder="Ask something..."
+      style="width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+    <div style="display: flex; gap: 10px; margin-top: 10px;">
+      <button (click)="sendRequestToAI()"
+        style="flex: 1; padding: 10px; background: #28c845; color: white; border: none; border-radius: 5px;">Send</button>
+
+      <button (click)="clearChat()"
+        style="flex: 1; padding: 10px; background: #e74c3c; color: white; border: none; border-radius: 5px;">Clear Chat</button>
+    </div>
+  </div>
+</div>

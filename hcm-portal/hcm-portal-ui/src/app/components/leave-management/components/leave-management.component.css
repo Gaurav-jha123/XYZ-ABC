@@ -1,0 +1,125 @@
+.leave-management-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.filters-card {
+  margin-bottom: 20px;
+}
+
+.filters-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filters-row mat-form-field {
+  min-width: 200px;
+}
+
+.table-card {
+  overflow: hidden;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.leave-table {
+  width: 100%;
+  min-width: 1000px;
+}
+
+.mat-mdc-cell {
+  padding: 12px 8px;
+}
+
+.mat-mdc-header-cell {
+  padding: 12px 8px;
+  font-weight: 600;
+}
+
+.employee-info strong {
+  display: block;
+}
+
+.employee-info small {
+  color: #666;
+  font-size: 0.8em;
+}
+
+.duration-info div {
+  margin-bottom: 4px;
+}
+
+.duration-info small {
+  color: #666;
+  font-size: 0.8em;
+}
+
+.reason-cell {
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 2px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.action-buttons button.mat-icon-button {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  padding: 0;
+}
+
+.action-buttons .mat-icon {
+  font-size: 18px;
+  line-height: 18px;
+  height: 18px;
+  width: 18px;
+}
+
+.mat-chip {
+  font-size: 12px;
+}
+
+.mat-mdc-no-data-row td {
+  text-align: center;
+  padding: 24px;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filters-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filters-row mat-form-field {
+    min-width: unset;
+    width: 100%;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+}

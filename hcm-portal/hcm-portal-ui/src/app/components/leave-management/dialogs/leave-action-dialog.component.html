@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>{{ getTitle() }}</h2>
+
+<mat-dialog-content>
+  <div class="request-details">
+    <h3>Leave Request Details</h3>
+    <div class="detail-row">
+      <strong>Employee:</strong> {{ data.request.employeeName }}
+    </div>
+    <div class="detail-row">
+      <strong>Leave Type:</strong> {{ data.request.leaveType }}
+    </div>
+    <div class="detail-row">
+      <strong>Duration:</strong> 
+      {{ data.request.startDate | date:'shortDate' }} - {{ data.request.endDate | date:'shortDate' }}
+    </div>
+    <div class="detail-row">
+      <strong>Reason:</strong> {{ data.request.reason }}
+    </div>
+  </div>
+  
+  <mat-divider></mat-divider>
+  
+  <form [formGroup]="actionForm">
+    <div class="form-section">
+      <h3>{{ getActionLabel() }}</h3>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Comments</mat-label>
+        <textarea matInput 
+                  formControlName="comments" 
+                  rows="4" 
+                  [placeholder]="getPlaceholder()"></textarea>
+        <mat-hint>{{ getHint() }}</mat-hint>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button 
+          [color]="getButtonColor()" 
+          (click)="onConfirm()">
+    {{ getConfirmText() }}
+  </button>
+</mat-dialog-actions>

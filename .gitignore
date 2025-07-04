@@ -1,0 +1,10 @@
+.vs/
+/hcm-portal/HCM.API/bin/Debug/net8.0
+/hcm-portal/HCM.API/obj
+/hcm-portal/HCM.Application/bin/Debug/net8.0
+/hcm-portal/HCM.Application/obj
+/hcm-portal/HCM.Domain/bin/Debug/net8.0
+/hcm-portal/HCM.Domain/obj
+/hcm-portal/HCM.Infrastructure/bin/Debug/net8.0
+/hcm-portal/HCM.Infrastructure/obj
+*.safetensors

@@ -1,0 +1,68 @@
+<div class="dashboard-container">
+  <h1>Dashboard</h1>
+  <p>Welcome, {{ currentUser?.username }}! You are logged in as {{ currentUser?.role }}.</p>
+  
+  <div class="stats-grid">
+    <mat-card class="stat-card" *ngIf="authService.isManager()">
+      <mat-card-header>
+        <mat-card-title>Team Members</mat-card-title>
+        <mat-icon>people</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-number">{{ employeeCount }}</div>
+        <p>Active employees under your management</p>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card class="stat-card" *ngIf="authService.isManager()">
+      <mat-card-header>
+        <mat-card-title>Pending Leave Requests</mat-card-title>
+        <mat-icon>event_available</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-number">{{ pendingLeaveRequests }}</div>
+        <p>Requests awaiting your approval</p>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card class="stat-card" *ngIf="authService.isAdmin()">
+      <mat-card-header>
+        <mat-card-title>Exit Processes</mat-card-title>
+        <mat-icon>exit_to_app</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-number">{{ exitProcesses }}</div>
+        <p>In-progress exit procedures</p>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card class="stat-card" *ngIf="authService.isAdmin()">
+      <mat-card-header>
+        <mat-card-title>Total Employees</mat-card-title>
+        <mat-icon>business</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-number">{{ totalEmployees }}</div>
+        <p>Company-wide employee count</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+  <div class="quick-actions" *ngIf="authService.isManager() || authService.isAdmin()">
+    <h2>Quick Actions</h2>
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" [routerLink]="['/employees/add']" *ngIf="authService.isManager()">
+        <mat-icon>person_add</mat-icon>
+        Add New Employee
+      </button>
+      <button mat-raised-button color="accent" [routerLink]="['/leave-requests']" *ngIf="authService.isManager()">
+        <mat-icon>event_available</mat-icon>
+        Review Leave Requests
+      </button>
+      <button mat-raised-button color="warn" [routerLink]="['/exit-process']" *ngIf="authService.isAdmin()">
+        <mat-icon>exit_to_app</mat-icon>
+        Initiate Exit Process
+      </button>
+    </div>
+  </div>
+</div>

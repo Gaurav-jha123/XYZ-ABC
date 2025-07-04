@@ -1,0 +1,121 @@
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 450px;
+  height: 100%;
+  background-color: white;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1050;
+  /* Ensure sidebar is on top */
+  resize: horizontal;
+  overflow: auto;
+  min-width: 200px;
+  /* Minimum width for the sidebar */
+  max-width: 600px;
+  /* Maximum width for the sidebar */
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* Overlay for background when sidebar opens */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1049;
+  display: none;
+}
+
+.overlay.show {
+  display: block;
+}
+
+/* Chat Button */
+.chat-button {
+  position: fixed;
+  top: 0px;
+  right: 20px;
+  padding: 10px 15px;
+  background: #28c845;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 1060;
+  /* Ensure button is always on top */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease-in-out;
+}
+
+.chat-button:hover {
+  background: #1fa82c;
+}
+
+.user-message {
+  text-align: right;
+  color: blue;
+  font: 12px;
+}
+
+.bot-message {
+  text-align: left;
+  color: green;
+  font: 12px;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 5px;
+  background-color: #f3f3f3;
+  position: relative;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  /* Ensure it is above other elements */
+}
+
+/* Spinner */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  /* Light gray */
+  border-top: 5px solid #28c845;
+  /* Green */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Spinner Animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
